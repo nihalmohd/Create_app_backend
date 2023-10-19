@@ -1,9 +1,9 @@
 const express = require('express')
 const cors = require("cors")
 const mysql = require("mysql")
-const UserRouter = require('./Routes/UserRouter')
 const app = express()
 const dotenv = require("dotenv")
+import UserRouter from './Routes/UserRouter'
 app.use(express.json());
 dotenv.config();
 
@@ -14,7 +14,7 @@ app.use(cors({
   }));
   
 
-  
+
   app.use("/",UserRouter)
 
 

@@ -1,5 +1,11 @@
 const { Router } = require("express")
 
 
- const UserRouter = Router()
- UserRouter.get()
+let UserRouter = Router();
+
+ UserRouter.get("/getdata")
+
+
+
+
+module.exports = UserRouter;
