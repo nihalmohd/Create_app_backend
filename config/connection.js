@@ -5,12 +5,13 @@ const connection = () => {
     host: process.env.Mysqlhost,
     user: process.env.Mysqluser,
     password: process.env.Mysqlpassword,
+    database: process.env.Database
   });
   db.connect((err) => {
     if (err) {
       console.error(`Error connecting to MySQL: ${err.message}`);
     } else {
-      console.log("Connected to MySQL database");
+     console.log("Database Connected Successfull");
     }
   });
 };
