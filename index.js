@@ -5,6 +5,7 @@ const dotenv = require("dotenv")
 const UserRouter = require("./Routes/UserRouter")
 const connection = require('./config/connection')
 app.use(express.json());
+
 dotenv.config();
 
 connection()
@@ -14,7 +15,6 @@ app.use(cors({
     origin: process.env.BASEURL, 
     methods: ["GET", "POST"],
   }));
-
 
   
   app.use("/",UserRouter)

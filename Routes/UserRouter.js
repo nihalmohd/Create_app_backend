@@ -6,7 +6,7 @@ let UserRouter = express.Router();
 
 UserRouter.get("/",UserController.Check)
 
- UserRouter.get("/AddData",UserController.Adddata)
+ UserRouter.post("/AddData",UserController.Adddata)
 
 
 
