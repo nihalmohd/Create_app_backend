@@ -1,12 +1,13 @@
-const express = require("express")
-const UserController = require("../Controller/Usercontorler")
+const { Router } = require("express");
+const { Check, Adddata, UpdateData, DeleteData } = require("../Controller/Usercontorler");
 
 
-let UserRouter = express.Router();
+let UserRouter = Router();
 
-UserRouter.get("/",UserController.Check)
-
- UserRouter.post("/AddData",UserController.Adddata)
+ UserRouter.get("/getData",Check)
+ UserRouter.post ("/AddData",Adddata)
+ UserRouter.post("/Update",UpdateData)
+ UserRouter.post("/DeletData",DeleteData)
 
 
 
