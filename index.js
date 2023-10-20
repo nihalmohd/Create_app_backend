@@ -3,7 +3,7 @@ const cors = require("cors")
 const mysql = require("mysql")
 const app = express()
 const dotenv = require("dotenv")
-import UserRouter from './Routes/UserRouter'
+const UserRouter = require("./Routes/UserRouter")
 app.use(express.json());
 dotenv.config();
 
@@ -13,8 +13,6 @@ app.use(cors({
     methods: ["GET", "POST"],
   }));
   
-
-
   app.use("/",UserRouter)
 
 

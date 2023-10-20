@@ -1,9 +1,12 @@
-const { Router } = require("express")
+const express = require("express")
+const UserController = require("../Controller/Usercontorler")
 
 
-let UserRouter = Router();
+let UserRouter = express.Router();
 
- UserRouter.get("/getdata")
+UserRouter.get("/",UserController.Check)
+
+ UserRouter.get("/AddData",UserController.Adddata)
 
 
 
