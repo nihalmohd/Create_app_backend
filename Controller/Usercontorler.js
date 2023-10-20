@@ -1,6 +1,6 @@
-const connection = require('../index')
 
-
+// const connection = require("../config/connection")
+//  const con = connection()
 
 const Check  = (req,res) =>{
     connection.query("select * from Product_Table")
