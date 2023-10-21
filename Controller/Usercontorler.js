@@ -124,7 +124,7 @@ const UpdateData = (req, res) => {
       }
     });
   };
-
+   
 
   const GetRowById = (req, res) => {
     const { id } = req.body;
@@ -151,6 +151,30 @@ const UpdateData = (req, res) => {
   };
 
 
+  const GetProductsBySize = (req, res) => {
+    const { size } = req.query;
+    console.log('Selected Size:', size);
+    let selectQuery = `
+      SELECT * FROM Product_Table
+    `;
+    if (size && size !== 'all') {
+      selectQuery += ` WHERE size = ?`;
+    }
+    const sizeValue = size === 'all' ? null : size;
+  
+    console.log('Size Value for Query:', sizeValue);
+  
+    connections.query(selectQuery, [sizeValue], (err, results) => {
+      if (err) {
+        console.error(`Error retrieving data: ${err.message}`);
+        res.status(500).send('Error retrieving data');
+      } else {
+        res.status(200).json({ message: 'Data retrieved successfully', data: results });
+        console.log('Retrieved Data:', results);
+      }
+    });
+  };
+  
   
 
 module.exports = {
@@ -160,4 +184,5 @@ module.exports = {
   UpdateData,
   DeleteData,
   GetRowById,
+  GetProductsBySize
 };
