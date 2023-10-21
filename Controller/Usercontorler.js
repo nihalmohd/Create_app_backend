@@ -7,7 +7,6 @@ const connections = mysql.createConnection({
   password: process.env.Mysqlpassword,
   database: process.env.Database
 });
-
 connections.connect((err) => {
   if (err) {
     console.error(`Error connecting to MySQL: ${err.message}`);
@@ -26,7 +25,7 @@ const Check = (req, res) => {
     }
   });
 };
-
+ 
 
 const Adddata = (req, res) => {
   console.log('Hello');
@@ -96,7 +95,7 @@ const UpdateData = (req, res) => {
         res.status(500).send("Error updating data");
       } else {
         console.log("Data updated successfully.");
-        res.status(200).send("Data updated successfully");
+        res.status(200).json({messge:"updated Successfull",data:results});
       }
     });
   };
@@ -127,11 +126,38 @@ const UpdateData = (req, res) => {
   };
 
 
+  const GetRowById = (req, res) => {
+    const { id } = req.body;
+  
+    const selectQuery = `
+      SELECT * FROM Product_Table
+      WHERE id = ?
+    `;
+  
+    connections.query(selectQuery, id, (err, results) => {
+      if (err) {
+        console.error(`Error retrieving data: ${err.message}`);
+        res.status(500).send("Error retrieving data");
+      } else {
+        if (results.length > 0) {
+          console.log(`Data with id ${id} retrieved successfully.`);
+          res.status(200).json({ message: "Data retrieved successfully", data: results[0] });
+        } else {
+          console.log(`No data found with id ${id}.`);
+          res.status(404).send(`No data found with id ${id}.`);
+        }
+      }
+    });
+  };
+
+
   
 
 module.exports = {
+
   Adddata,
   Check,
   UpdateData,
-  DeleteData
+  DeleteData,
+  GetRowById,
 };
